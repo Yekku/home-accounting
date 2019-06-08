@@ -17,6 +17,6 @@ export class UsersService extends BaseApi {
   }
 
   createNewUser(user: User): Observable<User> {
-    return this.post('users', user);
+    return this.post('auth/registration', user);
   }
 }

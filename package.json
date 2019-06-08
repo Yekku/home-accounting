@@ -1,54 +1,51 @@
 {
-  "name": "home-money",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build-prod": "ng build --prod",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "server": "json-server --watch db.json --port 3000",
-    "dev": "concurrently --kill-others \"npm run start\" \"npm run server\""
+  "name": "fullstack",
+  "version": "1.0.0",
+  "description": "fullstack app with angular and express",
+  "main": "index.js",
+  "engines": {
+    "node": "10.14.2",
+    "npm": "6.4.1"
   },
-  "private": true,
+  "scripts": {
+    "start": "node index",
+    "server": "nodemon index",
+    "client-install": "npm install --prefix client",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yekku/fullstack.git"
+  },
+  "keywords": [
+    "express",
+    "angular"
+  ],
+  "author": "Yekku",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yekku/fullstack/issues"
+  },
+  "homepage": "https://github.com/Yekku/fullstack#readme",
   "dependencies": {
-    "@angular/animations": "^4.2.5",
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0",
-    "@angular/http": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
-    "@angular/router": "^4.0.0",
-    "@swimlane/ngx-charts": "^5.3.1",
-    "core-js": "^2.4.1",
-    "d3": "^4.9.1",
-    "moment": "^2.18.1",
-    "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.5.13",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "tar": "^4.4.10",
+    "typescript": "^3.2.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.1",
-    "@angular/compiler-cli": "^4.0.0",
-    "@types/jasmine": "2.5.38",
-    "@types/node": "~6.0.60",
-    "codelyzer": "~2.0.0",
-    "concurrently": "^3.4.0",
-    "jasmine-core": "~2.5.2",
-    "jasmine-spec-reporter": "~3.2.0",
-    "karma": "~1.4.1",
-    "karma-chrome-launcher": "~2.0.0",
-    "karma-cli": "~1.0.1",
-    "karma-coverage-istanbul-reporter": "^0.2.0",
-    "karma-jasmine": "~1.1.0",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.1.0",
-    "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "concurrently": "^3.6.1",
+    "nodemon": "^1.19.1"
   }
 }
