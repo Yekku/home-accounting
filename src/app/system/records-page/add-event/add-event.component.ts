@@ -22,8 +22,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
   @Input() categories: Category[] = [];
 
   types = [
-    {type: 'income', label: 'Доход'},
-    {type: 'outcome', label: 'Расход'}
+    {type: 'income', label: 'Income'},
+    {type: 'outcome', label: 'Outcome'}
   ];
 
   message: Message;
@@ -55,7 +55,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
         let value = 0;
         if (type === 'outcome') {
           if (amount > bill.value) {
-            this.showMessage(`На счету недостаточно средств. Вам нехватает ${amount - bill.value}`);
+            this.showMessage(`Insufficient funds on the account. You are short of ${amount - bill.value}`);
             return;
           } else {
             value = bill.value - amount;
