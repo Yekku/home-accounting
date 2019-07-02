@@ -10,6 +10,8 @@ import { UsersService } from './shared/services/users.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuard } from './shared/services/auth.guard';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { HttpService } from './shared/services/http.service';
+import { SystemModule } from './system/system.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,14 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
     HttpModule,
     AuthModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SystemModule
   ],
-  providers: [UsersService, AuthService, AuthGuard],
+  providers: [
+    HttpService,
+    UsersService,
+    AuthService,
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

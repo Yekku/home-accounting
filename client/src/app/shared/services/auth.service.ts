@@ -1,49 +1,30 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {User} from '../models/user.model';
-import {tap} from 'rxjs/operators';
+import { HttpService } from './http.service';
+import { Http, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../models/user.model';
+import { tap } from 'rxjs/operators/tap';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
+@Injectable()
 export class AuthService {
+  private isAuthenticated = false;
+  constructor(private http: HttpService) {}
 
-  private token = null;
-
-  constructor(private http: HttpClient) {
-  }
-
-  register(user: User): Observable<User> {
-    return this.http.post<User>('auth/registration', user);
-  }
-
-  login(user: User): Observable<{token: string}> {
-    return this.http.post<{token: string}>('auth/login', user)
-      .pipe(
-        tap(
-          ({token}) => {
-            localStorage.setItem('auth-token', token);
-            this.setToken(token);
-          }
-        )
-      );
-  }
-
-  setToken(token: string) {
-    this.token = token;
-  }
-
-  getToken(): string {
-    return this.token;
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.token;
+  login(user: User): Observable<{ token: string }> {
+    return this.http.createPost('login', user).pipe(
+      tap(({ token }) => {
+        window.localStorage.setItem('auth-token', token);
+        this.isAuthenticated = true;
+      }),
+    );
   }
 
   logout() {
-    this.setToken(null);
-    localStorage.clear();
+    this.isAuthenticated = false;
+    window.localStorage.clear();
+  }
+
+  isLoggedIn(): boolean {
+    return this.isAuthenticated;
   }
 }

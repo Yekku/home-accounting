@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(require('cors')())
 
-app.use('/api/auth', authRoutes)
-app.use('/api/category', categoryRoutes)
-app.use('/api/event', eventRoutes)
-app.use('/api/bill', billRoutes)
+app.use('/', authRoutes)
+app.use('/categories', categoryRoutes)
+app.use('/events', eventRoutes)
+app.use('/bills', billRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/dist/client'))

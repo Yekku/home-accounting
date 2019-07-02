@@ -35,7 +35,9 @@ export class AddCategoryComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.sub1) this.sub1.unsubscribe();
+    if (this.sub1) {
+      this.sub1.unsubscribe();
+    }
   }
 
 }

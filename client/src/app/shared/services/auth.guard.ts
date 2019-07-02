@@ -1,30 +1,40 @@
-import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from '@angular/router';
-import {Observable, of} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanActivateChild,
+  Router,
+  RouterStateSnapshot
+} from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { AuthService } from './auth.service';
+
+@Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private auth: AuthService,
-              private router: Router) {
-  }
+  private token = window.localStorage.getItem('auth-token');
+  constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    if (this.auth.isAuthenticated()) {
-      return of(true);
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.authService.isLoggedIn() || this.token) {
+      return true;
     } else {
-      this.router.navigate(['/login'], {
+      this.router.navigate(['login'], {
         queryParams: {
-          accessDenied: true
-        }
+          accessDenied: true,
+        },
       });
-      return of(false);
+      return false;
     }
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.canActivate(route, state);
+  canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this.canActivate(childRoute, state);
   }
 }

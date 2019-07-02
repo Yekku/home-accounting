@@ -36,13 +36,13 @@ export class PlanningPageComponent implements OnInit, OnDestroy {
       this.bill = data[0];
       this.categories = data[1];
       this.events = data[2];
-
+      console.log('bill: ', this.bill);
       this.isLoaded = true;
     });
   }
 
   getCategoryCost(cat: Category): number {
-    const catEvents = this.events.filter(e => e.category === cat.id && e.type === 'outcome');
+    const catEvents = this.events.filter(e => e.category === cat._id && e.type === 'outcome');
     return catEvents.reduce((total, e) => {
       total += e.amount;
       return total;

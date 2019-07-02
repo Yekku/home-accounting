@@ -3,20 +3,26 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Bill } from '../models/bill.model';
-import { BaseApi } from '../../../shared/core/base-api';
+import { HttpService } from 'app/shared/services/http.service';
 
 @Injectable()
-export class BillService extends BaseApi {
-  constructor(public http: Http) {
-    super(http);
+export class BillService {
+  constructor(private HttpService: HttpService, public http: Http) {}
+
+  addBill(bill: Bill): Observable<Bill> {
+    return this.HttpService.createPost('bills', bill);
   }
 
   getBill(): Observable<Bill> {
-    return this.get('bill');
+    return this.HttpService.createGet('bills');
   }
 
-  updateBill(bill: Bill): Observable<Bill> {
-    return this.put('bill', bill);
+  updateBill(id: string, value, currency: string): Observable<Bill> {
+    const fd = new FormData();
+    fd.append('value', value);
+    fd.append('currency', currency);
+    console.log('fd:', fd);
+    return this.HttpService.createPut(`bills/${id}`, fd);
   }
 
   getCurrency(): Observable<any> {
@@ -26,5 +32,4 @@ export class BillService extends BaseApi {
       )
       .map((response: Response) => response.json());
   }
-
 }

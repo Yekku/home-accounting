@@ -11,14 +11,14 @@ export class HistoryEventsComponent implements OnInit {
   @Input() categories: Category[] = [];
   @Input() events: WFMEvent[] = [];
   searchValue = '';
-  searchPlaceholder = 'Сумма';
+  searchPlaceholder = 'Sum';
   searchField = 'amount';
 
   constructor() { }
 
   ngOnInit() {
     this.events.forEach((e) => {
-      e.catName = this.categories.find(c => c.id === e.category).name;
+      e.catName = this.categories.find(c => c._id === e.category).name;
     });
   }
 
@@ -32,10 +32,10 @@ export class HistoryEventsComponent implements OnInit {
 
   changeCriteria(field: string) {
     const namesMap = {
-      amount: 'Сумма',
-      date: 'Дата',
-      category: 'Категория',
-      type: 'Тип'
+      amount: 'Sum',
+      date: 'Date',
+      category: 'Category',
+      type: 'Type'
     };
     this.searchPlaceholder = namesMap[field];
     this.searchField = field;

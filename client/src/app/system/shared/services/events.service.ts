@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
-import { BaseApi } from '../../../shared/core/base-api';
 import { WFMEvent } from '../models/event.model';
+import { HttpService } from 'app/shared/services/http.service';
 
 @Injectable()
-export class EventsService extends BaseApi {
-  constructor(public http: Http) {
-    super(http);
-  }
+export class EventsService {
+  constructor(private http: HttpService) {}
 
   addEvent(event: WFMEvent): Observable<WFMEvent> {
-    return this.post('events', event);
+    return this.http.createPost('events', event);
   }
 
   getEvents(): Observable<WFMEvent[]> {
-    return this.get('events');
+    return this.http.createGet('events');
   }
 
   getEventById(id: string): Observable<WFMEvent> {
-    return this.get(`events/${id}`);
+    return this.http.createGet(`events/${id}`);
   }
 }

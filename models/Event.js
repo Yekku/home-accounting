@@ -4,23 +4,27 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema({
   type: {
     type: String,
-    required: true
+    required: true,
   },
   amount: {
     type: Number,
-    required: true
+    required: true,
   },
   category: {
     ref: 'categories',
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
   },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   description: {
-    type: String
-  }
+    type: String,
+  },
+  user: {
+    ref: 'users',
+    type: Schema.Types.ObjectId,
+  },
 });
 
 module.exports = mongoose.model('events', eventSchema);

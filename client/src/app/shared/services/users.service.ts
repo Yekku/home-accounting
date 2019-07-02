@@ -3,20 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../models/user.model';
-import { BaseApi } from '../core/base-api';
+import { HttpService } from './http.service';
 
 @Injectable()
-export class UsersService extends BaseApi {
-  constructor(public http: Http) {
-    super(http);
-  }
+export class UsersService {
+  constructor(private http: HttpService) {}
 
   getUserByEmail(email: string): Observable<User> {
-    return this.get(`users?email=${email}`)
-      .map((users: User[]) => users[0] ? users[0] : undefined);
+    return this.http.createGetQuery(`users?email=${email}`)
+    .map((users: User[]) =>
+      users[0] ? users[0] : undefined,
+    );
   }
 
   createNewUser(user: User): Observable<User> {
-    return this.post('auth/registration', user);
+    return this.http.createPost('registration', user);
   }
 }

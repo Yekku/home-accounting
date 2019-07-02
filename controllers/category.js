@@ -33,7 +33,8 @@ module.exports.remove = async function(req, res) {
 module.exports.create = async function(req, res) {
   const category = new Category({
     name: req.body.name,
-    capacity: req.body.capacity
+    capacity: req.body.capacity,
+    user: req.user.id,
   });
 
   try {
@@ -47,7 +48,8 @@ module.exports.create = async function(req, res) {
 module.exports.update = async function(req, res) {
   const updated = {
     name: req.body.name,
-    capacity: req.body.capacity
+    capacity: req.body.capacity,
+    user: req.user.id,
   };
 
   try {

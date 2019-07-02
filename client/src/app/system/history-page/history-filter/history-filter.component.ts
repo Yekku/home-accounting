@@ -18,14 +18,14 @@ export class HistoryFilterComponent {
   selectedCategories = [];
 
   timePeriods = [
-    {type: 'd', label: 'День'},
-    {type: 'w', label: 'Неделя'},
-    {type: 'M', label: 'Месяц'}
+    {type: 'd', label: 'Day'},
+    {type: 'w', label: 'Week'},
+    {type: 'M', label: 'Mounth'}
   ];
 
   types = [
-    {type: 'income', label: 'Доход'},
-    {type: 'outcome', label: 'Расход'}
+    {type: 'income', label: 'Income'},
+    {type: 'outcome', label: 'Outcome'}
   ];
 
   closeFilter() {

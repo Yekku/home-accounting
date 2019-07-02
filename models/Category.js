@@ -4,11 +4,15 @@ const Schema = mongoose.Schema
 const categorySchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   capacity: {
     type: Number,
-    required: true
+    required: true,
+  },
+  user: {
+    ref: 'users',
+    type: Schema.Types.ObjectId,
   }
 });
 

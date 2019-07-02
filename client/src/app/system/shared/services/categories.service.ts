@@ -1,29 +1,25 @@
-import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
-import { BaseApi } from '../../../shared/core/base-api';
 import { Category } from '../models/category.model';
+import { HttpService } from 'app/shared/services/http.service';
 
 @Injectable()
-export class CategoriesService extends BaseApi {
-  constructor(public http: Http) {
-    super(http);
-  }
+export class CategoriesService {
+  constructor(private http: HttpService) {}
 
   addCategory(category: Category): Observable<Category> {
-    return this.post('categories', category);
+    return this.http.createPost('categories', category);
   }
 
   getCategories(): Observable<Category[]> {
-    return this.get('categories');
+    return this.http.createGet('categories');
   }
 
   updateCategory(category: Category): Observable<Category> {
-    return this.put(`categories/${category.id}`, category);
+    return this.http.createPut(`categories/${category._id}`, category);
   }
 
-  getCategoryById(id: number): Observable<Category> {
-    return this.get(`categories/${id}`);
+  getCategoryById(_id: string): Observable<Category> {
+    return this.http.createGet(`categories/${_id}`);
   }
 }
