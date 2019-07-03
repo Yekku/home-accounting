@@ -60,6 +60,10 @@ typings/
 # next.js build output
 .next
 
+# System Files
+.DS_Store
+Thumbs.db
+
 config/keys.dev.js
 client/etc
 package-lock.json

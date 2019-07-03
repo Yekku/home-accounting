@@ -23,7 +23,7 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   controller.create,
 );
-router.patch(
+router.put(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   controller.update,

@@ -20,7 +20,7 @@
                 Parameter
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" (click)="changeCriteria('amount')">Sum</a>
+                <a class="dropdown-item" (click)="changeCriteria('amount')">Amount</a>
                 <a class="dropdown-item" (click)="changeCriteria('date')">Date</a>
                 <a class="dropdown-item" (click)="changeCriteria('category')">Category</a>
                 <a class="dropdown-item" (click)="changeCriteria('type')">Type</a>
@@ -33,7 +33,7 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Sum</th>
+              <th>Amount</th>
               <th>Date</th>
               <th>Category</th>
               <th>Type</th>
@@ -44,7 +44,7 @@
             <tr *ngFor="let e of events | wfmFilter:searchValue:searchField; let idx = index">
               <th scope="row">{{ idx + 1 }}</th>
               <td>{{ e.amount | number:'1.2' }}</td>
-              <td>{{ e.date | wfmMoment:'DD.MM.YYYY HH:mm:ss' }}</td>
+              <td>{{ e.date | wfmMoment:'YYYY-MM-DD HH:mm:ss' }}</td>
               <td>{{ e.catName }}</td>
               <td>
                 <span [ngClass]="getEventClass(e)">
@@ -53,7 +53,7 @@
                 </span>
               </td>
               <td class="text-lg-center">
-                <a [routerLink]="['/system/history', e.id]" class="btn btn-primary-outline">Open</a>
+                <a [routerLink]="['/system/history', e._id]" class="btn btn-primary-outline">Open</a>
               </td>
             </tr>
             </tbody>

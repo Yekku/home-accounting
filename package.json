@@ -1,7 +1,7 @@
 {
-  "name": "fullstack",
+  "name": "home-bookkeeping-app",
   "version": "1.0.0",
-  "description": "fullstack app with angular and express",
+  "description": "angular app",
   "main": "index.js",
   "engines": {
     "node": "10.14.2",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yekku/fullstack.git"
+    "url": "git+https://github.com/Yekku/home-accounting.git"
   },
   "keywords": [
     "express",
@@ -26,9 +26,9 @@
   "author": "Yekku",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Yekku/fullstack/issues"
+    "url": "https://github.com/Yekku/home-accounting/issues"
   },
-  "homepage": "https://github.com/Yekku/fullstack#readme",
+  "homepage": "https://github.com/Yekku/home-accounting#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -42,7 +42,7 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "tar": "^4.4.10",
-    "typescript": "^3.4.2"
+    "typescript": "^3.2.4"
   },
   "devDependencies": {
     "concurrently": "^3.6.1",

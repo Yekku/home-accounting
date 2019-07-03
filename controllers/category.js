@@ -54,10 +54,10 @@ module.exports.update = async function(req, res) {
 
   try {
     const category = await Category.findOneAndUpdate(
-      {_id: req.params.id},
-      {$set: updated},
-      {new: true}
-    )
+      { _id: req.params.id },
+      { $set: updated },
+      { new: true }
+    );
     res.status(200).json(category)
   } catch (e) {
     errorHandler(res, e)

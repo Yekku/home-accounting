@@ -26,7 +26,7 @@ module.exports.create = async function(req, res) {
 module.exports.update = async function(req, res) {
   const updated = {
     value: req.body.value,
-    currency: req.body.curency,
+    currency: req.body.currency,
     user: req.user.id
   };
 
@@ -34,7 +34,8 @@ module.exports.update = async function(req, res) {
     const bill = await Bill.findOneAndUpdate(
       { _id: req.params.id },
       { $set: updated },
-      { new: true },
+      { new: true }
+      
     );
     res.status(200).json(bill);
   } catch (e) {

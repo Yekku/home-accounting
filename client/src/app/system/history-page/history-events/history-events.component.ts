@@ -11,7 +11,7 @@ export class HistoryEventsComponent implements OnInit {
   @Input() categories: Category[] = [];
   @Input() events: WFMEvent[] = [];
   searchValue = '';
-  searchPlaceholder = 'Sum';
+  searchPlaceholder = 'Amount';
   searchField = 'amount';
 
   constructor() { }
@@ -32,7 +32,7 @@ export class HistoryEventsComponent implements OnInit {
 
   changeCriteria(field: string) {
     const namesMap = {
-      amount: 'Sum',
+      amount: 'Amount',
       date: 'Date',
       category: 'Category',
       type: 'Type'
