@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit {
       .subscribe((params: Params) => {
         if (params['nowCanLogin']) {
           this.showMessage({
-            text: 'Теперь вы можете зайти в систему',
+            text: 'Now You can enter in system',
             type: 'success'
           });
         } else if (params['accessDenied']) {
           this.showMessage({
-            text: 'Для работы с системой вам необходимо войти',
+            text: 'You must login first.',
             type: 'warning'
           });
         }
@@ -79,13 +79,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/system', 'bill']);
           } else {
             this.showMessage({
-              text: 'Пароль не верный',
+              text: 'Password incorrect!',
               type: 'danger'
             });
           }
         } else {
           this.showMessage({
-            text: 'Такого пользователя не существует',
+            text: 'Cannot find user!',
             type: 'danger'
           });
         }
