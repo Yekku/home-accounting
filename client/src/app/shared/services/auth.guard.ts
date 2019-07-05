@@ -19,7 +19,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isLoggedIn() || this.token) {
+    const isExpired = this.authService.helper.isTokenExpired(this.token);
+    if (this.authService.isLoggedIn() || !isExpired) {
       return true;
     } else {
       this.router.navigate(['login'], {

@@ -12,14 +12,17 @@ import { AuthService } from '../../../../shared/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
-  user: User;
+  name: string;
 
   constructor(private authService: AuthService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    const decodedToken = this.authService.getDecodedAccessToken(
+      window.localStorage.getItem('auth-token')
+    );
+    this.name = decodedToken.name;
   }
 
   onLogout() {

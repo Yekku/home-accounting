@@ -14,10 +14,11 @@
         <label class="control-label" for="e-select-category">Выберите категорию</label>
         <select
           class="form-control"
-          id="e-select-category"
-          [(ngModel)]="currentCategoryId"
-          (change)="onCategoryChange()"
-          [ngModelOptions]="{standalone: true}"
+          id="category"
+          required
+          [ngModel]="currentCategory"
+          name="category"
+          #category="ngModel"
         >
           <option
             *ngFor="let c of categories"

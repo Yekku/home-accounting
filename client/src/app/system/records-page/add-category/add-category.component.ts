@@ -13,6 +13,8 @@ import { Category } from '../../shared/models/category.model';
 export class AddCategoryComponent implements OnDestroy {
 
   sub1: Subscription;
+  name: string;
+  capacity: number;
 
   @Output() onCategoryAdd = new EventEmitter<Category>();
 
@@ -20,16 +22,17 @@ export class AddCategoryComponent implements OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    let {name, capacity} = form.value;
-    if (capacity < 0) capacity *= -1;
+    this.name = form.value.name;
+    this.capacity = form.value.capacity;
+    if (this.capacity < 0) { this.capacity *= -1; }
 
-    const category = new Category(name, capacity);
+    const category = new Category(this.name, this.capacity);
 
     this.sub1 = this.categoriesService.addCategory(category)
-      .subscribe((category: Category) => {
+      .subscribe((cat: Category) => {
         form.reset();
         form.form.patchValue({capacity: 1});
-        this.onCategoryAdd.emit(category);
+        this.onCategoryAdd.emit(cat);
       });
 
   }

@@ -14,7 +14,7 @@ module.exports.login = async function(req, res) {
     if (passwordResult) {
       // Генерация токена, пароли совпали
       const token = jwt.sign({
-        email: candidate.email,
+        name: candidate.name,
         userId: candidate._id
       }, keys.jwt, {expiresIn: 60 * 60})
 

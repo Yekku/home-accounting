@@ -3,7 +3,7 @@
   <div class="title-block">
     <h3 class="title">
       <a [routerLink]="['/system/history']"><i class="fa fa-arrow-left"></i></a>
-      Event page № {{ event.id }}
+      Event page № {{ event._id }}
       <span class="sparkline bar"></span>
     </h3>
   </div>
@@ -24,7 +24,7 @@
           </div>
           <div class="card-block">
             <ul>
-              <li>Sum: <strong>{{event.amount | number:'1.2'}} P</strong></li>
+              <li>Amount: <strong>{{event.amount | number:'1.2'}} €</strong></li>
               <li>Category: <strong>{{category.name}}</strong></li>
               <li>Coment: <strong>{{event.description}}</strong></li>
             </ul>
