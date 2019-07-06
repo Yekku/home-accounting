@@ -53,6 +53,13 @@ export class AddEventComponent implements OnInit, OnDestroy {
     if (this.amount < 0) {
       this.amount *= -1;
     }
+    const event = new WFMEvent(
+      this.type,
+      this.amount,
+      form.value.category,
+      moment().format('DD.MM.YYYY HH:mm:ss'),
+      form.value.description,
+    );
 
     this.sub1 = this.billService.getBill()
     .subscribe(
@@ -73,15 +80,12 @@ export class AddEventComponent implements OnInit, OnDestroy {
           this.value = this.bill.value + this.amount;
         }
       }
-      const event = new WFMEvent(
-        this.type,
-        this.amount,
-        form.value.category,
-        moment().format('DD.MM.YYYY HH:mm:ss'),
-        form.value.description,
+      const updateBill = new Bill(
+        this.value,
+        this.bill.currency
       );
       this.sub2 = this.billService
-        .updateBill(this.value, this.bill.currency, this.bill._id)
+        .updateBill(updateBill, this.bill._id)
         .mergeMap(() => this.eventsService.addEvent(event))
         .subscribe(() => {
           form.setValue({

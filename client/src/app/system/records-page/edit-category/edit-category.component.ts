@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class EditCategoryComponent implements OnInit, OnDestroy {
   @Input() categories: Category[] = [];
   @Output() onCategoryEdit = new EventEmitter<Category>();
-
+  currentCategory: Category;
   currentCategoryId: string;
   message: Message;
   sub1: Subscription;
@@ -24,15 +24,16 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.message = new Message('success', '');
+    this.onCategoryChange();
   }
 
-  // onCategoryChange() {
-  //   this.currentCategory = this.categories.find(
-  //     c => c._id === this.currentCategoryId,
-  //   );
-  //   console.log('currentCategoryId:', this.currentCategoryId);
-  //   console.log('currentCategory:', this.currentCategory);
-  // }
+  onCategoryChange() {
+    this.currentCategory = this.categories.find(
+      c => c._id === this.currentCategoryId,
+    );
+    console.log('currentCategoryId:', this.currentCategoryId);
+    console.log('currentCategory:', this.currentCategory);
+  }
 
   onSubmit(form: NgForm) {
     this.capacity = form.value.capacity;
@@ -47,7 +48,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
       .subscribe((cat: Category) => {
         form.reset();
         this.onCategoryEdit.emit(cat);
-        this.message.text = 'Категория успешно отредактирована.';
+        this.message.text = 'Updated category success.';
         window.setTimeout(() => (this.message.text = ''), 5000);
       });
   }

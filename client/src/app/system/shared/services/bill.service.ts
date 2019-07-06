@@ -17,12 +17,8 @@ export class BillService {
     return this.HttpService.createGet('bills');
   }
 
-  updateBill(value: number, currency: string, id: string): Observable<Bill> {
-    const fd = new FormData();
-    fd.append('value', value);
-    fd.append('currency', currency);
-    console.log('fd:', fd);
-    return this.HttpService.createPut(`bills/${id}`, fd);
+  updateBill(bill: Bill, id: string): Observable<Bill> {
+    return this.HttpService.createPut(`bills/${id}`, bill);
   }
 
   getCurrency(): Observable<any> {

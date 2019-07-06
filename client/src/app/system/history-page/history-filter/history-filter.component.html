@@ -5,7 +5,7 @@
         <button type="button" class="close" (click)="closeFilter()">
           <span>×</span>
         </button>
-        <h4 class="modal-title">Filtr</h4>
+        <h4 class="modal-title">Filter</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -35,7 +35,7 @@
               <input
                 class="checkbox"
                 type="checkbox"
-                [value]="c.id"
+                [value]="c._id"
                 (change)="handleChangeCategory($event.target)"
               >
               <span>{{c.name}}</span>

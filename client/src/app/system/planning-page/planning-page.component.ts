@@ -36,7 +36,6 @@ export class PlanningPageComponent implements OnInit, OnDestroy {
       this.bill = data[0];
       this.categories = data[1];
       this.events = data[2];
-      console.log('bill: ', this.bill);
       this.isLoaded = true;
     });
   }
