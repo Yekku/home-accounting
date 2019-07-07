@@ -18,7 +18,6 @@ export class AuthService {
       tap(({ token }) => {
         window.localStorage.setItem('auth-token', token);
         this.token = token;
-        this.isAuthenticated = true;
       }),
     );
   }
@@ -29,6 +28,12 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
+    const isExpired = this.helper.isTokenExpired(this.token);
+    if (!isExpired) {
+      this.isAuthenticated = true;
+    } else {
+      this.isAuthenticated = false;
+    }
     return this.isAuthenticated;
   }
 

@@ -1,4 +1,4 @@
-<p class="text-xs-center">Войдите для работы</p>
+<p class="text-xs-center">Login Page</p>
 <div
   @fade
   class="alert alert-{{message.type}}"
@@ -17,38 +17,38 @@
       type="text"
       class="form-control underlined"
       id="email"
-      placeholder="Введите ваш email"
+      placeholder="Enter email"
       formControlName="email"
     >
     <span
       class="form-help-text"
       *ngIf="form.get('email').invalid && form.get('email').touched"
     >
-      <span *ngIf="form.get('email')['errors']['required']">Email не может быть пустым. </span>
-      <span *ngIf="form.get('email')['errors']['email']">Введите корректный email. </span>
+      <span *ngIf="form.get('email')['errors']['required']">Required field. </span>
+      <span *ngIf="form.get('email')['errors']['email']">Enter correct email. </span>
     </span>
   </div>
   <div
     class="form-group"
     [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
   >
-    <label for="password">Пароль</label>
+    <label for="password">Password</label>
     <input
       type="password"
       class="form-control underlined"
       id="password"
-      placeholder="Пароль"
+      placeholder="Password"
       formControlName="password"
     >
     <span
       class="form-help-text"
       *ngIf="form.get('password').invalid && form.get('password').touched"
     >
-      <span *ngIf="form.get('password')['errors']['required']">Пароль не может быть пустым. </span>
+      <span *ngIf="form.get('password')['errors']['required']">Required field. </span>
       <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
-        Пароль должен быть больше
+        Password must be at least
         {{ form.get('password')['errors']['minlength']['requiredLength'] }}
-        символов. Сейчас {{ form.get('password')['errors']['minlength']['actualLength'] }}.
+        characters. Now {{ form.get('password')['errors']['minlength']['actualLength'] }}.
       </span>
     </span>
   </div>
@@ -58,12 +58,12 @@
       class="btn btn-block btn-primary"
       [disabled]="form.invalid"
     >
-      Войти
+      Login
     </button>
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">
-      Нет аккаунта? <a [routerLink]="'/registration'">Зарегистрироваться!</a>
+      Not have account? <a [routerLink]="'/registration'">Registration</a>
     </p>
   </div>
 </form>

@@ -32,7 +32,6 @@ module.exports.update = async function(req, res) {
     const bill = await Bill.findOneAndUpdate(
       { _id: req.params.id },
       { $set: updated }
-      
     );
     res.status(200).json(bill);
   } catch (e) {

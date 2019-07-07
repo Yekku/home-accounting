@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
               private title: Title,
               private meta: Meta
   ) {
-    title.setTitle('Вход в систему');
+    title.setTitle('Login Page');
     meta.addTags([
-      { name: 'keywords', content: 'логин,вход,система' },
-      { name: 'description', content: 'Страница для входа в систему' }
+      { name: 'keywords', content: 'login,system,enter' },
+      { name: 'description', content: 'Login page' }
     ]);
   }
 
@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
       .subscribe((params: Params) => {
         if (params['nowCanLogin']) {
           this.showMessage({
-            text: 'Теперь вы можете зайти в систему',
+            text: 'Now you can enter in system',
             type: 'success'
           });
         } else if (params['accessDenied']) {
           this.showMessage({
-            text: 'Для работы с системой вам необходимо войти',
-            type: 'warning'
+            text: 'You should login first',
+            type: 'warning',
           });
         }
       });
