@@ -29,15 +29,7 @@ app.use('/events', eventRoutes)
 app.use('/bills', billRoutes)
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/dist/client'))
-
-  app.get('*', (req, res) => {
-    res.sendFile(
-      path.resolve(
-        __dirname, 'client', 'dist', 'client', 'index.html'
-      )
-    )
-  })
+  app.use(express.static('client/dist'))
 }
 
 module.exports = app
