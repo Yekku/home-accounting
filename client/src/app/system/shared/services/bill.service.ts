@@ -22,8 +22,7 @@ export class BillService {
   }
 
   getCurrency(): Observable<any> {
-    return this.http
-      .get(
+    return this.HttpService.createGet(
         `http://data.fixer.io/api/latest?access_key=50f8bded1c8cc758592581b654bb7126`,
       )
       .map((response: Response) => response.json());
