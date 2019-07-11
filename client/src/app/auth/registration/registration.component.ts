@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/models/user.model';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'app/shared/services/auth.service';
 
 @Component({
   selector: 'wfm-registration',
@@ -15,7 +14,7 @@ export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private usersService: UsersService,
+  constructor(private auth: AuthService,
               private router: Router,
               private title: Title
   ) {
@@ -35,7 +34,7 @@ export class RegistrationComponent implements OnInit {
     const {email, password, name} = this.form.value;
     const user = new User(email, password, name);
 
-    this.usersService.createNewUser(user)
+    this.auth.createNewUser(user)
       .subscribe(() => {
         this.router.navigate(['login'], {
           queryParams: {

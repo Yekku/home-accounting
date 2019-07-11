@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { User } from '../models/user.model';
 import { Config } from '../../../config';
 
 @Injectable()
@@ -18,9 +17,14 @@ export class HttpService {
 
   createAuthenticatedHeaders() {
     const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     if (this.localStorage.getItem('auth-token')) {
       headers.append('Authorization', this.localStorage.getItem('auth-token'));
     }
+    return headers;
+  }
+  createHeaders() {
+    const headers = new Headers();
     return headers;
   }
 
@@ -38,6 +42,16 @@ export class HttpService {
         HttpService.requestHandle.next(response);
         return response.json();
       })
+      .catch(this.errorHandler);
+  }
+
+  get(url: string) {
+    const headers = this.createHeaders();
+    return this.http
+      .get(url, {
+        headers: headers,
+      })
+      .map((response: Response) => response.json())
       .catch(this.errorHandler);
   }
 
