@@ -13,7 +13,7 @@
     "client-install": "npm install --prefix client",
     "client": "npm run start --prefix client",
     "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm run client-install && npm run build-prod --prefix client"
+    "heroku-postbuild": "npm run client-install"
   },
   "repository": {
     "type": "git",
