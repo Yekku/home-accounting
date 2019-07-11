@@ -12,22 +12,15 @@ import { HttpService } from './shared/services/http.service';
 import { SystemModule } from './system/system.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent
-  ],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     HttpModule,
+    BrowserAnimationsModule,
     AuthModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    SystemModule
   ],
-  providers: [
-    HttpService,
-    AuthService,
-    AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [HttpService, AuthService, AuthGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
