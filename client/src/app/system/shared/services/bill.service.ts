@@ -23,8 +23,6 @@ export class BillService {
   }
 
   getCurrency(): Observable<any> {
-    return this.HttpService.get(
-      `https://openexchangerates.org/api/latest.json?app_id=b911f8c6251143beb05a6dc0cfd9eb54`,
-    );
+    return this.HttpService.get(`https://api.exchangeratesapi.io/latest`);
   }
 }
