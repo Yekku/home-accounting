@@ -7,7 +7,7 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "build-prod": "ng build --prod",
     "build": "ng build",
-    "postinstall": "ng build --prod",
+    "postinstall": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
