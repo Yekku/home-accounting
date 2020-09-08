@@ -6,9 +6,9 @@ import { Message } from '../../../shared/models/message.model';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'wfm-edit-category',
-  templateUrl: './edit-category.component.html',
-  styleUrls: ['./edit-category.component.scss'],
+  selector: "wfm-edit-category",
+  templateUrl: "./edit-category.component.html",
+  styleUrls: ["./edit-category.component.scss"],
 })
 export class EditCategoryComponent implements OnInit, OnDestroy {
   @Input() categories: Category[] = [];
@@ -25,20 +25,19 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.message = new Message('success', '');
     this.currentCategoryId = this.categories[0]._id;
-    this.onCategoryChange();
+    this.onCategoryChange(this.currentCategoryId);
   }
 
-  onCategoryChange() {
-    this.currentCategoryId = this.currentCategoryId;
+  onCategoryChange(currentCategoryId: string) {
+    this.currentCategoryId = currentCategoryId;
     this.currentCategory = this.categories.find(
-      c => c._id === this.currentCategoryId
+      (c) => c._id === this.currentCategoryId
     );
   }
 
   onSubmit(form: NgForm) {
     this.capacity = form.value.capacity;
     this.name = form.value.name;
-
 
     if (this.capacity < 0) {
       this.capacity *= -1;

@@ -15,9 +15,7 @@
         <select
           class="form-control"
           id="e-select-category"
-          [(ngModel)]="currentCategoryId"
-          (change)="onCategoryChange($event)"
-          [ngModelOptions]="{standalone: true}"
+          (change)="onCategoryChange($event.target.value)"
         >
           <option
             *ngFor="let c of categories"
