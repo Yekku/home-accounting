@@ -109,6 +109,3 @@ Thumbs.db
 
 config/keys.dev.js
 client/etc
-package-lock.json
-client/package-lock.json
-client/node_modules
