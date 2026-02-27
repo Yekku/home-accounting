@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Add new event</h3>
+    </div>
+  </div>
+  <div class="card-block">
+    @if (message.text) {
+      <div class="alert alert-{{ message.type }}">
+        {{ message.text }}
+      </div>
+    }
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+        <label class="control-label" for="category">Select category</label>
+        <select class="form-control" id="category" required [ngModel]="1" name="category">
+          @for (c of categories; track c._id) {
+            <option [value]="c._id">{{ c.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Select type</label>
+        @for (t of types; track t.type) {
+          <div>
+            <label>
+              <input
+                class="radio"
+                name="type"
+                type="radio"
+                [value]="t.type"
+                required
+                [ngModel]="'outcome'"
+              />
+              <span>{{ t.label }}</span>
+            </label>
+          </div>
+        }
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': amount.invalid && amount.touched }">
+        <label class="control-label" for="amount">Enter amount</label>
+        <input
+          type="number"
+          id="amount"
+          class="form-control"
+          name="amount"
+          [ngModel]
+          min="1"
+          #amount="ngModel"
+          required
+        />
+        @if (amount.invalid && amount.touched) {
+          <span class="form-help-text">Required field</span>
+        }
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{ 'has-error': description.invalid && description.touched }"
+      >
+        <label class="control-label" for="description">Enter description</label>
+        <input
+          type="text"
+          id="description"
+          class="form-control"
+          name="description"
+          ngModel
+          #description="ngModel"
+          required
+        />
+        @if (description.invalid && description.touched) {
+          <span class="form-help-text">Required field</span>
+        }
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Add</button>
+    </form>
+  </div>
+</div>

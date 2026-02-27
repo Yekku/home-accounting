@@ -1,0 +1,87 @@
+<p class="text-xs-center">Registration Page</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div
+    class="form-group"
+    [ngClass]="{ 'has-error': form.get('email')!.invalid && form.get('email')!.touched }"
+  >
+    <label for="email">Email</label>
+    <input
+      type="text"
+      class="form-control underlined"
+      id="email"
+      placeholder="Email"
+      formControlName="email"
+    />
+    @if (form.get('email')!.invalid && form.get('email')!.touched) {
+      <span class="form-help-text">
+        @if (form.get('email')!.errors?.['required']) {
+          <span>Required field. </span>
+        }
+        @if (form.get('email')!.errors?.['email']) {
+          <span>Enter correct email. </span>
+        }
+      </span>
+    }
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{ 'has-error': form.get('password')!.invalid && form.get('password')!.touched }"
+  >
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control underlined"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+    />
+    @if (form.get('password')!.invalid && form.get('password')!.touched) {
+      <span class="form-help-text">
+        @if (form.get('password')!.errors?.['required']) {
+          <span>Required field. </span>
+        }
+        @if (form.get('password')!.errors?.['minlength']) {
+          <span>
+            Password must be at least
+            {{ form.get('password')!.errors?.['minlength']?.['requiredLength'] }}
+            characters. Now {{ form.get('password')!.errors?.['minlength']?.['actualLength'] }}.
+          </span>
+        }
+      </span>
+    }
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{ 'has-error': form.get('name')!.invalid && form.get('name')!.touched }"
+  >
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control underlined"
+      id="name"
+      placeholder="Name"
+      formControlName="name"
+    />
+    @if (form.get('name')!.invalid && form.get('name')!.touched) {
+      <span class="form-help-text">Required field.</span>
+    }
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{ 'has-error': form.get('agree')!.invalid && form.get('agree')!.touched }"
+  >
+    <label for="agree">
+      <input class="checkbox" id="agree" type="checkbox" formControlName="agree" />
+      <span>I agree with the rules</span>
+    </label>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Sign up</button>
+  </div>
+  <div class="form-group">
+    <p class="text-muted text-xs-center">
+      Already have account?
+      <a [routerLink]="'/login'">Login!</a>
+    </p>
+  </div>
+</form>

@@ -1,0 +1,56 @@
+<div class="title-block">
+  <h3 class="title">
+    Budgeting Page <span class="sparkline bar"></span>
+  </h3>
+</div>
+@if (!isLoaded) {
+  <section class="section text-center"><app-loader></app-loader></section>
+} @else {
+  <section class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-sm bordered">
+            <div class="header-block">
+              <h3 class="title">Outcome</h3>
+            </div>
+            <h5 class="planning-expenses pull-right">
+              Total amount:
+              <span class="text-success">{{ bill.value | number : '1.2' }} &euro;</span>
+            </h5>
+          </div>
+          <div class="card-block">
+            @for (c of categories; track c._id) {
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="n-progress">
+                    <div
+                      class="progress-bar {{ getCatColorClass(c) }}"
+                      [ngStyle]="{ width: getCatPercent(c) }"
+                    >
+                      <span>{{ c.name }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <p>
+                    <span class="text-{{ getCatColorClass(c) }}">{{
+                      getCategoryCost(c) | number : '1.2'
+                    }}</span>
+                    at
+                    <span class="text-primary">{{ c.capacity | number : '1.2' }}</span>
+                    | still have
+                    <span class="text-{{ getCatColorClass(c) }}">{{
+                      c.capacity - getCategoryCost(c) | number : '1.2'
+                    }}</span>
+                    (&euro;)
+                  </p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}

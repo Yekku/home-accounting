@@ -1,0 +1,30 @@
+<div class="title-block">
+  <h3 class="title">
+    Events Page <span class="sparkline bar"></span>
+  </h3>
+</div>
+
+@if (!isLoaded) {
+  <section class="section text-center">
+    <app-loader></app-loader>
+  </section>
+} @else {
+  <section class="section">
+    <div class="row">
+      <div class="col-md-6">
+        <app-add-event [categories]="categories"></app-add-event>
+      </div>
+      <div class="col-md-6">
+        <app-add-category (onCategoryAdd)="newCategoryAdded($event)"></app-add-category>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <app-edit-category
+          [categories]="categories"
+          (onCategoryEdit)="categoryWasEdited($event)"
+        ></app-edit-category>
+      </div>
+    </div>
+  </section>
+}

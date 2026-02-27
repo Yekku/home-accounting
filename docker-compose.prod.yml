@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: ha-mongo-prod
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    container_name: ha-server-prod
+    restart: always
+    env_file: .env
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/home_accounting
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    container_name: ha-client-prod
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+
+networks:
+  app-network:

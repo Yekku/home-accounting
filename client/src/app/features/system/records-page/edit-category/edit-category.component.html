@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Edit Category</h3>
+    </div>
+  </div>
+  <div class="card-block">
+    @if (message.text) {
+      <div class="alert alert-{{ message.type }}">{{ message.text }}</div>
+    }
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+        <label class="control-label" for="e-select-category">Select category</label>
+        <select
+          class="form-control"
+          id="e-select-category"
+          (change)="onCategoryChange($any($event.target).value)"
+        >
+          @for (c of categories; track c._id) {
+            <option [value]="c._id">{{ c.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': name.invalid && name.touched }">
+        <label class="control-label" for="e-category-name">Enter category name</label>
+        <input
+          type="text"
+          id="e-category-name"
+          class="form-control"
+          required
+          #name="ngModel"
+          name="name"
+          [ngModel]="currentCategory.name"
+        />
+        @if (name.invalid && name.touched) {
+          <span class="form-help-text">Required field.</span>
+        }
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': capacity.invalid && capacity.touched }">
+        <label class="control-label" for="e-category-value">Enter amount</label>
+        <input
+          type="number"
+          id="e-category-value"
+          class="form-control"
+          [ngModel]="currentCategory.capacity"
+          name="capacity"
+          #capacity="ngModel"
+          required
+          min="1"
+        />
+        @if (capacity.invalid && capacity.touched) {
+          <span class="form-help-text">Required field</span>
+        }
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Apply</button>
+    </form>
+  </div>
+</div>
