@@ -1,15 +1,12 @@
 <section class="section">
   <div class="row">
-    <div class="col-xs-12 text-center chart-center">
-      <ngx-charts-pie-chart
-        [view]="[545, 355]"
-        [results]="data"
-        [legend]="false"
-        [explodeSlices]="false"
-        [labels]="true"
-        [doughnut]="true"
-      >
-      </ngx-charts-pie-chart>
+    <div class="col-xs-12 text-center chart-center" style="position: relative; height: 355px; max-width: 545px; margin: 0 auto;">
+      <canvas
+        baseChart
+        type="doughnut"
+        [data]="chartData"
+        [options]="chartOptions"
+      ></canvas>
     </div>
   </div>
 </section>
