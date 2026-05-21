@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+.stats .stat .value {
+  font-size: clamp(20px, 1.3vw, 28px);
+  line-height: 1.4;
+}
+
+.stats .stat-progress {
+  margin-top: 12px;
+}
