@@ -66,7 +66,7 @@ export class HistoryPageComponent implements OnInit {
       );
     }
 
-    if (filterData.period) {
+    if (filterData.period && filterData.period !== 'all') {
       const now = new Date();
       let start: Date;
       let end: Date;

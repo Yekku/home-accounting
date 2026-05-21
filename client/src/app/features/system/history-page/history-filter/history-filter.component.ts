@@ -23,6 +23,7 @@ export class HistoryFilterComponent {
   @Output() onFilterCancel = new EventEmitter<void>();
 
   timePeriods = [
+    { type: 'all', label: 'All time' },
     { type: 'd', label: 'Day' },
     { type: 'w', label: 'Week' },
     { type: 'M', label: 'Month' },
@@ -33,7 +34,7 @@ export class HistoryFilterComponent {
     { type: 'outcome', label: 'Outcome' },
   ];
 
-  selectedPeriod = 'd';
+  selectedPeriod = 'all';
   selectedTypes: string[] = [];
   selectedCategories: string[] = [];
 
